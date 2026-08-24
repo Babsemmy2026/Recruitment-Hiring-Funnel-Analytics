@@ -1,38 +1,35 @@
---- Here is the technical README.md file for SQL/01_data_audit.sql subfolder.
-
---- This document explains the data auditing process, SQL checks executed, missingness logic, and 
-structural integrity findings for your GitHub repository.
-
-# Data Audit & Quality Assessment (01_data_audit.sql)
+Markdown
+# Data Audit & Quality Assessment (`01_data_audit.sql`)
 
 ## Overview
-Before cleaning and transforming the raw recruitment dataset, a comprehensive SQL data audit was 
-conducted on the raw recruitment_data table (10,000 records).
 
-## The goal of the audit was to:
+Before cleaning and transforming the raw recruitment dataset, a comprehensive SQL data audit was conducted 
+on the raw `recruitment_data` table (**10,000 records**).
 
-## Verify record counts and primary key uniqueness.
+The primary goals of the audit were to:
+* **Verify Key Constraints:** Confirm total record counts and primary key uniqueness (`Candidate_ID`).
+* **Profile Missingness:** Evaluate missing values across recruitment stages and classify structural missingness.
+* **Validate Chronology:** Ensure all stage timestamps follow logical date sequences 
+($Application \rightarrow Screening \rightarrow Interview \rightarrow Offer \rightarrow Hire$).
+* **Check Value Distributions:** Detect negative values, invalid zeroes, or extreme outliers in continuous 
+numeric fields (e.g., costs and salaries).
 
-## Identify missing values and evaluate structural missingness across recruitment funnel stages.
+---
 
-## Validate date chronology and flag logical errors (e.g., negative durations, out-of-order dates).
+## Audit Execution & Methodology
 
-## Verify numeric distributions for costs, salaries, and candidate metrics.
+All audit queries were executed in **MySQL 8.0**. The scripts perform non-destructive read operations to 
+profile data quality without altering underlying values.
 
-# Audit Execution & Methodology
-All audit queries were executed in MySQL 8.0. The scripts perform non-destructive read operations 
-to profile data quality without altering underlying values.
-
-# Row Count & Uniqueness Verification
-
-## Checked total row count and verified that Candidate_ID contains zero duplicates to ensure it serves as a 
-reliable primary key.
+### 1. Row Count & Uniqueness Verification
+Checked total row count and verified that `Candidate_ID` contains zero duplicates to ensure it serves as a reliable 
+primary key.
 Result: 10,000 total records | 0 duplicate IDs.
 
-## Missing Value & Structural Missingness Audit
+### 2. Missing Value & Structural Missingness Audit
 Evaluated missingness across all stage dates (Application_Date, Screening_Date, Interview_Date, Offer_Date, Hire_Date).
 
-## Understanding Structural Missingness
+### Understanding Structural Missingness
 Missing dates in this dataset represent structural missingness rather than data loss. Candidates who drop out 
 at early stages naturally have NULL values for unreached future stages:
 
@@ -44,15 +41,15 @@ Missing Offer Dates (958): Candidates who were not extended an offer post-interv
 
 Missing Hire Dates (112): Candidates who received an offer but did not accept/hire.
 
-## Chronological Consistency AuditVerified that stage dates follow a logical time sequence 
+### 3. Chronological Consistency AuditVerified that stage dates follow a logical time sequence 
 ($Application \rightarrow Screening \rightarrow Interview \rightarrow Offer \rightarrow Hire$).
 Result: 0 invalid date sequences identified. All timestamps maintain strict chronological integrity.
 
-## Numeric Range & Value Distribution Audit
+### 3. Numeric Range & Value Distribution Audit
 Validated continuous numeric variables (Hiring_Cost, Salary) for negative values, zeroes, or extreme outliers.
 Result: 0 negative values found across cost or compensation fields.
 
-# Conclusion & Next Steps
+### Conclusion & Next Steps
 The audit confirmed high overall data hygiene with no corrupted dates, missing primary identifiers, 
 or negative numeric values.
 
