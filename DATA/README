@@ -1,1 +1,19 @@
+## Dataset
 
+The dataset contains **10,000 recruitment records** covering the candidate journey from application through hiring.
+
+Key fields include:
+
+- Candidate ID
+- Application Date
+- Screening Date
+- Interview Date
+- Offer Date
+- Hire Date
+- Candidate Status
+- Recruitment Source
+- Recruiter
+- Department
+- Hiring Cost
+- Job Role
+- Time-to-Hire
