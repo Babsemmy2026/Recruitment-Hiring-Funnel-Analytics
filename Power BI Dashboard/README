@@ -1,1 +1,44 @@
+# Power BI Dashboard
 
+The Power BI report contains two analytical pages.
+
+## Page 1 — Recruitment & Hiring Funnel Analytics
+
+The first page provides an overall recruitment performance view.
+
+### KPIs
+
+- Total Applicants
+- Total Hires
+- Overall Hire Rate
+- Average Time-to-Hire
+- Average Cost per Hire
+
+### Visuals
+
+- Hiring Funnel
+- Recruitment Source Performance
+- Time-to-Hire by Department
+- Recruiter Performance
+- Monthly Hiring Trend
+
+### Filters
+
+- Department
+- Recruitment Source
+- Recruiter
+- Job Role
+
+---
+
+## Page 2 — Recruitment Insights & Recommendations
+
+The second page focuses on business interpretation and decision support.
+
+### Key Visuals
+
+- Recruitment Funnel Drop-off
+- Average Cost per Hire by Department
+- Recruitment Source Hire Rate
+- Recruiter Performance
+- Key Recruitment Recommendations
